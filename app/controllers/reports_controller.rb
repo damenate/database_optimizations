@@ -23,8 +23,14 @@ class ReportsController < ApplicationController
   end
 
   def search
-    
+    if params[:search]
+      results = []
+      q = "%#{params[:search]}%"
+      @assembly = Hit.joins(:subject).where("genes LIKE ? OR sequences.dna LIKE ? OR asseblies.name LIKE ?",q ,q ,q)
+    end
+    @hits = results
   end
+
 
   private def memory_in_mb
     `ps -o rss -p #{$$}`.strip.split.last.to_i / 1024
