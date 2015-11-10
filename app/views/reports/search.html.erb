@@ -1,13 +1,32 @@
-<%= form_tag search_path, methode: :get do %>
-<%= field_tag :search, params[:search] %>
-<%= submit_tag "Search"%>
-<% end %>
+<div>
+  <p>What you want?</p>
+  <%= form_tag search_path, method: :get do %>
+    <%= text_field_tag :search, "", placeholder: "Search Term" %>
+    <%= submit_tag "Search" %>
+  <% end %>
 
-<%= if %>
+  <% if @hits %>
+    <p>Search Results: <%= @hits.count %></p>
 
-Notes from class tell me form_tag goes here but that doesn't make sense to me.
-Also thing something is missing in my controller.
+    <table>
+      <thead>
+        <tr>
+          <th>Matching Gene Name</th>
+          <th>Matching DNA</th>
+          <th>Percent Similarity</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @hits.each do |h| %>
+          <tr>
+            <td><%= h.match_gene_name %></td>
+            <td><%= h.match_gene_dna.first(100) %></td>
+            <td><%= h.percent_similarity %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
 
+  <% end %>
 
-<%= else %>
-<p> You must type something to see place a search.</p>
+  </div>
