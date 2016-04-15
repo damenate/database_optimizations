@@ -6,8 +6,6 @@ Given an existing application which generates a report from a large data set, im
 
 ## Objectives
 
-After completing this assignment, you should...
-
 * Understand the downsides of loops within loops in Rails.
 * Understand the benefits and appropriate use of indices on database tables.
 * Understand the downside of indices.
@@ -40,4 +38,3 @@ Create a new action in your `reports` controller which loads the same data, but 
 
 In other words, if a user types in "special" and one assembly has a `name` "Special Assembly" (and no hits have "special" in their `match_gene_name`), all hits for just that assembly will be shown.  If a user types in "tetanus" and only one hit has a `match_gene_name` which includes "tetanus" (and no assemblies have "tetanus" in their `name`), only that one hit will be shown.  If a user types in "AACCGGTT", only hits for genes with "AACCGGTT" in them should be shown.
 
-The search should also be case insensitive.
